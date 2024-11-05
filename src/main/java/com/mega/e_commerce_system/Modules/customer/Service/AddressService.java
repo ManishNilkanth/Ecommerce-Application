@@ -1,7 +1,7 @@
 package com.mega.e_commerce_system.Modules.customer.Service;
 
-import com.mega.e_commerce_system.Modules.customer.Payload.AddressRequest;
 import com.mega.e_commerce_system.Modules.customer.Payload.AddressResponse;
+import com.mega.e_commerce_system.Modules.customer.Payload.AddressRequest;
 
 import java.util.List;
 

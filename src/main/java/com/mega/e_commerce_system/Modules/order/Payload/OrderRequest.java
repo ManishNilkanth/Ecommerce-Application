@@ -2,7 +2,6 @@ package com.mega.e_commerce_system.Modules.order.Payload;
 
 import com.mega.e_commerce_system.Modules.payment.Entities.PaymentMethod;
 import com.mega.e_commerce_system.Modules.payment.Payload.ProductPurchaseRequest;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

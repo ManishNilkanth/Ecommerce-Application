@@ -7,13 +7,10 @@ import com.mega.e_commerce_system.Modules.customer.Payload.CustomerRequest;
 import com.mega.e_commerce_system.Modules.customer.Repository.CustomerRepository;
 import com.mega.e_commerce_system.Secutiry.JwtService;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor

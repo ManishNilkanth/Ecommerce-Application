@@ -1,19 +1,20 @@
 package com.mega.e_commerce_system.Modules.payment.Service.ServiceImpl;
 
 import com.mega.e_commerce_system.Exceptions.*;
+import com.mega.e_commerce_system.Modules.Notification.EmailService;
 import com.mega.e_commerce_system.Modules.customer.Entities.Customer;
 import com.mega.e_commerce_system.Modules.customer.Repository.CustomerRepository;
+import com.mega.e_commerce_system.Modules.payment.Repository.PaymentRepository;
 import com.mega.e_commerce_system.Modules.order.Entities.Order;
 import com.mega.e_commerce_system.Modules.order.Entities.OrderStatus;
 import com.mega.e_commerce_system.Modules.order.Repository.OrderRepository;
 import com.mega.e_commerce_system.Modules.payment.Entities.PaymentStatus;
 import com.mega.e_commerce_system.Modules.payment.Payload.PaymentResponse;
-import com.mega.e_commerce_system.Modules.payment.Repository.PaymentRepository;
 import com.mega.e_commerce_system.Modules.payment.Entities.Payment;
 import com.mega.e_commerce_system.Modules.payment.Payload.PaymentRequest;
 import com.mega.e_commerce_system.Modules.payment.Service.PaymentService;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,14 +23,13 @@ public class PaymentServiceImpl implements PaymentService {
 
     private final PaymentRepository paymentRepository;
 
-    private final ModelMapper modelMapper;
     private final OrderRepository orderRepository;
 
     private final CustomerRepository customerRepository;
+    private final EmailService emailService;
 
-//    private final NotificationProducer notificationProducer;
 @Override
-public PaymentResponse createPayment(PaymentRequest request) {
+public PaymentResponse createPayment(PaymentRequest request) throws MessagingException {
 
     Payment isPaymentExist = paymentRepository.findByOrderId(request.getOrderId());
 
@@ -61,6 +61,12 @@ public PaymentResponse createPayment(PaymentRequest request) {
     paymentRepository.save(payment);
     orderRepository.save(order);
 
+    emailService.paymentSuccessfulEmail(
+            customer.getEmail(),
+            customer.getFirstName(),
+            order.getTotalAmount(),
+            order.getReference()
+    );
     return PaymentResponse.builder()
             .paymentId(payment.getId())
             .customerId(customer.getId())

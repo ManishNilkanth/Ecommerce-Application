@@ -3,6 +3,7 @@ package com.mega.e_commerce_system.Modules.payment.Controller;
 import com.mega.e_commerce_system.Modules.payment.Payload.PaymentRequest;
 import com.mega.e_commerce_system.Modules.payment.Payload.PaymentResponse;
 import com.mega.e_commerce_system.Modules.payment.Service.PaymentService;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,8 +21,7 @@ public class PaymentController {
     private final PaymentService paymentService;
 
     @PostMapping
-    public ResponseEntity<PaymentResponse> createPayment(@RequestBody @Valid PaymentRequest request)
-    {
+    public ResponseEntity<PaymentResponse> createPayment(@RequestBody @Valid PaymentRequest request) throws MessagingException {
         PaymentResponse response = paymentService.createPayment(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }

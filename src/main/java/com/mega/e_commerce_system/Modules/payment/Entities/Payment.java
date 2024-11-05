@@ -1,6 +1,5 @@
 package com.mega.e_commerce_system.Modules.payment.Entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mega.e_commerce_system.Modules.order.Entities.Order;
 import jakarta.persistence.*;
 import lombok.*;

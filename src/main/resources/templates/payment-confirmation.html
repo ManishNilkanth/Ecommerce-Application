@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Confirmation</title>
+</head>
+<body>
+<h1>Payment Confirmation</h1>
+<p>Dear <span th:text="${customerName}">Customer</span>,</p>
+<p>Thank you for your payment! We have received it successfully.</p>
+
+<p><strong>Order Reference:</strong> <span th:text="${orderReference}"></span></p>
+<p><strong>Amount Paid:</strong> $<span th:text="${amount}"></span></p>
+
+<p>If you have any questions, feel free to contact us. Thank you for your trust in our services!</p>
+<p>Best regards,<br>Your Company</p>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.mega.e_commerce_system.Modules.customer.Payload;
 
+import jakarta.persistence.Embeddable;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Embeddable
 public class CustomerResponse {
     private Long id;
 

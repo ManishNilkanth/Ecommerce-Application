@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CustomerService {
 
-    public Long  updateCustomer(Long id,CustomerRequest customerRequest);
+    public Long  updateCustomer(Long id, CustomerRequest customerRequest);
 
     List<CustomerResponse> getAllCustomers();
 

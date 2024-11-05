@@ -3,6 +3,7 @@ package com.mega.e_commerce_system.Modules.order.Controller;
 import com.mega.e_commerce_system.Modules.order.Payload.OrderRequest;
 import com.mega.e_commerce_system.Modules.order.Payload.OrderResponse;
 import com.mega.e_commerce_system.Modules.order.Service.OrderService;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,8 +20,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<Integer> createOrder(@RequestBody @Valid OrderRequest request)
-    {
+    public ResponseEntity<Integer> createOrder(@RequestBody @Valid OrderRequest request) throws MessagingException {
         Integer orderId = orderService.createOrder(request);
         return new ResponseEntity<>(orderId, HttpStatus.CREATED);
     }

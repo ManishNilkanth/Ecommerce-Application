@@ -1,17 +1,16 @@
 package com.mega.e_commerce_system.Modules.customer.Service.ServiceImpl;
 
 import com.mega.e_commerce_system.Exceptions.CustomerNotFoundException;
-import com.mega.e_commerce_system.Modules.customer.Entities.Address;
 import com.mega.e_commerce_system.Modules.customer.Entities.Customer;
 import com.mega.e_commerce_system.Modules.customer.Payload.CustomerRequest;
 import com.mega.e_commerce_system.Modules.customer.Payload.CustomerResponse;
 import com.mega.e_commerce_system.Modules.customer.Repository.CustomerRepository;
 import com.mega.e_commerce_system.Modules.customer.Service.CustomerService;
+import com.mega.e_commerce_system.Modules.customer.Entities.Address;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service

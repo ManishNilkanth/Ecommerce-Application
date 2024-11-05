@@ -1,8 +1,6 @@
 package com.mega.e_commerce_system.Modules.product.Service.ServiceImpl;
 
-import com.mega.e_commerce_system.Exceptions.CustomerNotFoundException;
 import com.mega.e_commerce_system.Modules.product.Repository.CategoryRepository;
-import com.mega.e_commerce_system.Modules.product.Repository.ProductRepository;
 import com.mega.e_commerce_system.Modules.product.Entities.Category;
 import com.mega.e_commerce_system.Exceptions.CategoryNotFoundException;
 import com.mega.e_commerce_system.Modules.product.Payload.CategoryRequest;
