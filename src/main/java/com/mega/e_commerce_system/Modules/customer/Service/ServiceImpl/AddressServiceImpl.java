@@ -21,12 +21,11 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class AddressServiceImpl implements AddressService {
-
-
     private final AddressRepository addressRepository;
 
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
+
     @Override
     public AddressResponse saveAddress(AddressRequest addressDTO, Long customerId) {
         Customer customer = customerRepository.findById(customerId)

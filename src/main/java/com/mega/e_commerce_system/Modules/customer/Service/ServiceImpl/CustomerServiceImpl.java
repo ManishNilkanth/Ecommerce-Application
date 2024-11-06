@@ -9,6 +9,7 @@ import com.mega.e_commerce_system.Modules.customer.Service.CustomerService;
 import com.mega.e_commerce_system.Modules.customer.Entities.Address;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +19,6 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
-
     private final ModelMapper modelMapper;
 
     @Override
@@ -72,7 +72,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Boolean isCustomerExists(Long customerId) {
-        return customerRepository.findById(customerId).isPresent();
+        return customerRepository.existsById(customerId);
     }
 
     @Override

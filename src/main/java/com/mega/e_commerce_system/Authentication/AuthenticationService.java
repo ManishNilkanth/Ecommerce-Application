@@ -19,6 +19,9 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
+
+
+
     public AuthenticationResponse registerCustomer(CustomerRequest customerRequest)
     {
         Customer customer =  Customer.builder()

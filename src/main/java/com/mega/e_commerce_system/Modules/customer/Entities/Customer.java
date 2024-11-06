@@ -38,7 +38,7 @@ public class Customer implements UserDetails {
 
     private LocalDate dateOfBirth;
 
-    private String gender;
+    private String  gender;
 
     private Boolean isActive = true;
 

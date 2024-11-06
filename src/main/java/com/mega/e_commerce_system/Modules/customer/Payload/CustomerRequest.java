@@ -20,6 +20,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class CustomerRequest {
 
+    private Long id;
+
     @NotNull(message = "First name is null :: customer's firstname must be present")
     @NotBlank(message = "First name is required")
     private String firstName;
