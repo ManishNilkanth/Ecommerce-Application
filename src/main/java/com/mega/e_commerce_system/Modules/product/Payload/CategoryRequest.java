@@ -10,6 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 public class CategoryRequest {
 
+    Integer id;
     @NotNull(message = "category name is null:: category name must be present")
     private String name;
 

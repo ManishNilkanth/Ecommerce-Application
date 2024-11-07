@@ -109,7 +109,6 @@ public class ProductServiceImpl implements ProductService {
     public ProductResponse getProductById(Integer productId) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(()-> new ProductNotFoundException("Product","productId",productId));
-        log.info("product category ::",product.getCategory());
         return mapToProductResponse(product);
     }
 

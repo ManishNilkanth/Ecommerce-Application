@@ -3,11 +3,14 @@ package com.mega.e_commerce_system.Modules.customer.Payload;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class AddressRequest {
 
+    Long id;
     @NotBlank(message = "Address Line 1 is required")
     @Size(max = 100, message = "Address Line 1 must not exceed 100 characters")
     private String addressLine1;

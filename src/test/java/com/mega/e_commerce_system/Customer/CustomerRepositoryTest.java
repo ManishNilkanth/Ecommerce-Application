@@ -45,6 +45,7 @@ class CustomerRepositoryTest {
         Customer expected = customerRepository.findByEmail(email).orElseThrow(()-> new CustomerNotFoundException("Customer","Customer email",Long.parseLong(email)));
 
         //then
+        assertThat(expected).isNotNull();
          assertThat(actual.getFirstName()).isEqualTo(expected.getFirstName());
          assertThat(actual.getLastName()).isEqualTo(expected.getLastName());
          assertThat(actual.getRole()).isEqualTo(expected.getRole());

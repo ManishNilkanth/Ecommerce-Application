@@ -16,7 +16,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -28,14 +27,14 @@ class CustomerServiceImplTest {
 
     @Mock
     private CustomerRepository customerRepository;
-
     @Spy
     private ModelMapper modelMapper;
-
     @InjectMocks
     private CustomerServiceImpl underTest;
-
+    private CustomerRequest request;
     private Customer customer;
+    private Long invalidId = 34534L;
+
 
     @BeforeEach
     void setUp()
@@ -53,15 +52,8 @@ class CustomerServiceImplTest {
                 .isActive(true)
                   .address(new ArrayList<>())
                 .build();
-    }
-
-
-    @Test
-    void shouldUpdateCustomerTest() {
-        // Arrange
-        Long id = 1L;
-        CustomerRequest request = CustomerRequest.builder()
-                .id(id)
+          request = CustomerRequest.builder()
+                .id(1L)
                 .firstName("Ram")
                 .lastName("Sudan")
                 .role(Role.CUSTOMER)
@@ -71,9 +63,13 @@ class CustomerServiceImplTest {
                 .dateOfBirth(LocalDate.parse("2002-07-07"))
                 .phoneNumber("9770879341")
                 .build();
+    }
 
+
+    @Test
+    void shouldUpdateCustomerTest() {
         // Mock the repository behavior
-        when(customerRepository.findById(id)).thenReturn(Optional.of(customer));
+        when(customerRepository.findById(request.getId())).thenReturn(Optional.of(customer));
 
         // updated customer based on the request data
         customer.setFirstName(request.getFirstName());
@@ -87,11 +83,11 @@ class CustomerServiceImplTest {
         when(customerRepository.save(any(Customer.class))).thenReturn(customer);
 
         // Act
-        Long customerId = underTest.updateCustomer(id, request);
+        Long customerId = underTest.updateCustomer(request.getId(), request);
 
         // Assert
-        assertThat(customerId).isEqualTo(id); // Ensure the ID returned is correct
-        verify(customerRepository, times(1)).findById(id);
+        assertThat(customerId).isEqualTo(request.getId()); // Ensure the ID returned is correct
+        verify(customerRepository, times(1)).findById(request.getId());
         verify(customerRepository, times(1)).save(customer);
 
 
@@ -99,13 +95,11 @@ class CustomerServiceImplTest {
     @Test
     void updateCustomer_throwsExceptionIfCustomerNotFoundTest() {
         // Arrange
-        Long id = 1L;
         CustomerRequest request = new CustomerRequest();
-        when(customerRepository.findById(id)).thenReturn(Optional.empty());
-
+        when(customerRepository.findById(invalidId)).thenReturn(Optional.empty());
         // Act & Assert
-        assertThrows(CustomerNotFoundException.class, () -> underTest.updateCustomer(id, request));
-        verify(customerRepository).findById(id);
+        assertThrows(CustomerNotFoundException.class, () -> underTest.updateCustomer(invalidId, request));
+        verify(customerRepository).findById(invalidId);
         verifyNoMoreInteractions(customerRepository);
     }
 
@@ -119,46 +113,47 @@ class CustomerServiceImplTest {
 
     @Test
     void shouldCustomerExistsTest() {
-        //get
-        Long id = 1L;
         //when
-        when(customerRepository.existsById(id)).thenReturn(true);
-        underTest.isCustomerExists(id);
+        when(customerRepository.existsById(request.getId())).thenReturn(true);
+        underTest.isCustomerExists(request.getId());
         //then
-        verify(customerRepository).existsById(id);
+        verify(customerRepository).existsById(request.getId());
     }
 
     @Test
     void shouldGetCustomerByIdTest() {
-        //get
-        Long id = 1L;
         //when
-        when(customerRepository.findById(id)).thenReturn(Optional.of(customer));
-        underTest.getCustomerById(id);
+        when(customerRepository.findById(request.getId())).thenReturn(Optional.of(customer));
+        underTest.getCustomerById(request.getId());
         //then
-        verify(customerRepository).findById(id);
+        verify(customerRepository).findById(request.getId());
+    }
+    @Test
+    void shouldGetCustomerById_ThrowsExceptionCustomerNotFoundTest() {
+        //when
+        when(customerRepository.findById(invalidId)).thenReturn(Optional.empty());
+        assertThrows(CustomerNotFoundException.class,()-> underTest.getCustomerById(invalidId));
+        //then
+        verify(customerRepository).findById(invalidId);
     }
 
     @Test
     void deleteCustomerByIdTest() {
-        //get
-        Long id = 1L;
         //when
-        when(customerRepository.existsById(id)).thenReturn(true);
-        underTest.deleteCustomerById(id);
+        when(customerRepository.existsById(request.getId())).thenReturn(true);
+        underTest.deleteCustomerById(request.getId());
         //then
-        verify(customerRepository).existsById(id);
-        verify(customerRepository).deleteById(id);
+        verify(customerRepository).existsById(request.getId());
+        verify(customerRepository).deleteById(request.getId());
     }
 
     @Test
     void deleteCustomer_throwsExceptionIfCustomerNotFoundTest() {
         // Arrange
-        Long id = 1L;
-        when(customerRepository.existsById(id)).thenReturn(false);
+        when(customerRepository.existsById(request.getId())).thenReturn(false);
         // Act & Assert
-        assertThrows(CustomerNotFoundException.class, () -> underTest.deleteCustomerById(id));
-        verify(customerRepository).existsById(id);
+        assertThrows(CustomerNotFoundException.class, () -> underTest.deleteCustomerById(request.getId()));
+        verify(customerRepository).existsById(request.getId());
         verifyNoMoreInteractions(customerRepository);
     }
 }

@@ -27,11 +27,11 @@ public class AddressServiceImpl implements AddressService {
     private final ModelMapper modelMapper;
 
     @Override
-    public AddressResponse saveAddress(AddressRequest addressDTO, Long customerId) {
+    public AddressResponse saveAddress(AddressRequest request, Long customerId) {
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(()-> new CustomerNotFoundException("Customer","customerId",customerId));
 
-        Address address = modelMapper.map(addressDTO, Address.class);
+        Address address = modelMapper.map(request, Address.class);
         address.setCustomer(customer);
 
         List<Address> addresses = customer.getAddress();

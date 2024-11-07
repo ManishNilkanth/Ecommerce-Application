@@ -9,5 +9,4 @@ public interface OrderLineService {
 
     public OrderLine saveOrderLine(OrderLineRequest orderLineRequest);
 
-    OrderLineResponse getOrderLineByOrderId(Integer orderId);
 }

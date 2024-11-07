@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OrderLineRepository extends JpaRepository<OrderLine,Integer> {
-    OrderLine findByOrderId(Integer orderId);
+
 }

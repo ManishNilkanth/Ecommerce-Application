@@ -36,16 +36,4 @@ public class OrderLineServiceImpl implements OrderLineService {
                 .build();
     }
 
-    @Override
-    public OrderLineResponse getOrderLineByOrderId(Integer orderId) {
-        OrderLine orderLine = orderLineRepository.findByOrderId(orderId);
-        return mapToOrderLineResponse(orderLine);
-    }
-
-    private OrderLineResponse mapToOrderLineResponse(OrderLine orderLine) {
-        return OrderLineResponse.builder()
-                .id(orderLine.getId())
-                .quantity(orderLine.getQuantity())
-                .build();
-    }
 }

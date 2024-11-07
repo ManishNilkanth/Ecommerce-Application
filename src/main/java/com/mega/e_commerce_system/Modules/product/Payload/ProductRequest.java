@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 @Builder
 public class ProductRequest {
 
+    Integer id;
     @NotNull(message = "product name is required")
     @NotBlank(message = "product name is black:: product name is required")
     private String name;
