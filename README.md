@@ -1,11 +1,11 @@
 🛒 E-commerce Application Backend
 📄 Overview
 This is a RESTful backend for an e-commerce platform built using Spring Boot. It provides core functionalities for managing customers, products, orders, payments, and email notifications. The project is designed with scalability and modularity in mind, focusing on:
-
 Code quality
 Security
 Maintainability
 Effective error handling
+
 ✨ Features
 ✅ Customer Management
 Register, authenticate, and manage customer information.
@@ -29,6 +29,8 @@ Clear data management with domain and data transfer separation.
 Ensures data integrity using Spring's validation tools.
 🧪 Comprehensive Unit Testing
 Robust functionality verified with JUnit 5 and Mockito.
+
+
 🛠️ Technology Stack
 Technology	Purpose
 Spring Boot	Framework for building and running services
@@ -40,6 +42,8 @@ JUnit 5 & Mockito	Unit testing and mocking for business logic
 JWT	Secure, token-based authentication
 OpenAPI	API documentation
 Spring Security	Endpoint security and role management
+
+
 🚀 Future Enhancements
 Advanced Payment Integrations
 Expand support to include popular gateways like Stripe and PayPal.
